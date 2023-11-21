@@ -1,13 +1,13 @@
-package prueba;
+package clases;
 
-public class Hora {
+public class Hora2 {
         // atributos
         private int hora;
         private int minuto;
         private int segundo;
 
         // constructors
-        public Hora(int hora, int minuto, int segundo) {
+        public Hora2(int hora, int minuto, int segundo) {
                 setHora(hora);
                 setMinuto(minuto);
                 setSegundo(segundo);
