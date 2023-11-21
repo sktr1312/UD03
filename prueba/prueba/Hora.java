@@ -59,8 +59,9 @@ public class Hora {
         // metodos
 
         public void mostrarHora() {
-                System.out.printf("La hora es: %02d:%02d:%02d%n", hora, minuto, segundo);
-          
+                // System.out.printf("La hora es: %02d:%02d:%02d%n", hora, minuto, segundo);
+                String horaFormateada = String.format( "%02d:%02d:%02d", hora, minuto, segundo);
+                System.out.println("La hora es: " + horaFormateada);
         }
 
         public void sumarSegundos(int n) {
@@ -83,11 +84,5 @@ public class Hora {
                         mostrarHora();
 
                 }
-        }
-
-        public static void main(String[] args) {
-                Hora h = new Hora(2, 0, 0);
-                h.sumarSegundos(3600);
-               
         }
 }
