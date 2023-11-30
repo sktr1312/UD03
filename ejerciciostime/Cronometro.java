@@ -1,6 +1,7 @@
 package ejerciciostime;
 
 import java.time.*;
+import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
 
 public class Cronometro {
@@ -10,8 +11,6 @@ public class Cronometro {
         LocalDateTime inicioCronometro = null;
         LocalDateTime ultimaVezPulsado = null;
         LocalDateTime ahora;
-        Duration tiempoTotal;
-        Duration tiempoParcial;
 
         System.out.println("Bienvenido al cronómetro. Pulsa ENTER para iniciar o introduce 0 para salir.");
 
@@ -27,13 +26,15 @@ public class Cronometro {
                 } else {
                     // Detener el cronómetro y mostrar el tiempo transcurrido
                     ahora = LocalDateTime.now();
-                    tiempoTotal = Duration.between(inicioCronometro, ahora);
-                    tiempoParcial = Duration.between(ultimaVezPulsado, ahora);
+                    long tiempoTotalMinutos = inicioCronometro.until(ahora, ChronoUnit.MINUTES);
+                    long tiempoTotalSegundos = inicioCronometro.until(ahora, ChronoUnit.SECONDS) % 60;
+                    long tiempoParcialMinutos = ultimaVezPulsado.until(ahora, ChronoUnit.MINUTES);
+                    long tiempoParcialSegundos = ultimaVezPulsado.until(ahora, ChronoUnit.SECONDS);
 
-                    System.out.println("Tiempo total: " + tiempoTotal.toMinutes() + " minutos y "
-                            + tiempoTotal.getSeconds() % 60 + " segundos.");
-                    System.out.println("Tiempo parcial desde la última vez: " + tiempoParcial.toMinutes()
-                            + " minutos y " + tiempoParcial.getSeconds() % 60 + " segundos.");
+                    System.out.println("Tiempo total: " + tiempoTotalMinutos + " minutos y "
+                            + tiempoTotalSegundos + " segundos.");
+                    System.out.println("Tiempo parcial desde la última vez: " + tiempoParcialMinutos
+                            + " minutos y " + tiempoParcialSegundos + " segundos.");
                     ultimaVezPulsado = ahora;
                     System.out.println("Pulsa ENTER de nuevo para continuar o introduce 0 para salir.");
                 }
